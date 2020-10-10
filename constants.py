@@ -1,6 +1,3 @@
-from urllib.parse import urljoin
-
-
 BASE_URL = 'http://tools.restream.ru:4001'
 API = 'api'
 QA = 'qa'
@@ -15,5 +12,10 @@ QA_MOVIES_URL = f'{BASE_URL}/{QA}/{MOVIES}'
 QA_SERVICES_URL = f'{BASE_URL}/{QA}/{SERVICES}'
 
 BODY_TOKEN = {"device_type": "device_type"}
+BODY_FILM = {"name": "name",
+             "description": "description",
+             "start_date": "start_date",
+             "end_date": "end_date",
+             "services": [0]}
 
 HEADER_TOKEN = {"X-TOKEN": "token"}
