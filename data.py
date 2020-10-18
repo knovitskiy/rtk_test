@@ -1,19 +1,22 @@
+from constants import TV_DEVICE, MOBILE_DEVICE, STB_DEVICE
+
+
 class Services:
     TV = {"id": 0,
           "name": "tv",
           "description": "tv",
           "price": 300,
-          "device_types": ['tv']}
+          "device_types": [TV_DEVICE]}
     MOBILE = {"id": 1,
               "name": "mobile",
               "description": "mobile",
               "price": 150,
-              "device_types": ['mobile']}
+              "device_types": [MOBILE_DEVICE]}
     STB = {"id": 2,
            "name": "stb",
            "description": "description",
            "price": 0,
-           "device_types": ['stb']}
+           "device_types": [STB_DEVICE]}
 
 
 class Films:

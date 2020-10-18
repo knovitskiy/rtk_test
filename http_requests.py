@@ -30,6 +30,7 @@ def get_movies(device_type: str):
 def create_service(service: dict):
     request = requests.post(url=QA_SERVICES_URL, json=service)
     logger.info(f'Creating a service...\n{request.text}')
+    return request.json()['id']
 
 
 def create_movie(movie: dict):

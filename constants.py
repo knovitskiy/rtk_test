@@ -14,3 +14,9 @@ QA_SERVICES_URL = f'{BASE_URL}/{QA}/{SERVICES}'
 BODY_TOKEN = {"device_type": "device_type"}
 
 HEADER_TOKEN = {"X-TOKEN": "token"}
+
+TV_DEVICE = 'tv'
+MOBILE_DEVICE = 'mobile'
+STB_DEVICE = 'stb'
+
+WAITING_DATA_CREATED = 5
