@@ -26,6 +26,11 @@ def test_film_ended(device_type):
 
 
 @pytest.mark.parametrize('token', ['123', ''])
-def test_invalid_token(token):
-    response = get_movies(TV_DEVICE, token=token)
+def test_invalid_token_value(token):
+    response = get_movies(TV_DEVICE, token_value=token)
+    assert 'Токен не найден' in response['message']
+
+
+def test_invalid_token_key():
+    response = get_movies(TV_DEVICE, token_value='123')
     assert 'Токен не найден' in response['message']

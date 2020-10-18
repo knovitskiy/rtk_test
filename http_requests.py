@@ -17,12 +17,20 @@ def get_token(device_type):
     return token
 
 
-def get_movies(device_type: str, token=None):
+def get_movies(device_type: str, token_key='X-TOKEN', token_value=None):
     header = HEADER_TOKEN.copy()
-    if token is None:
-        header['X-TOKEN'] = get_token(device_type)
+
+    # replace the key in payload to specified:
+    if token_key is not 'X-TOKEN':
+        header[token_key] = header['X-TOKEN']
+        del header['X-TOKEN']
+
+    # replace the value in payload to specified:
+    if token_value is None:
+        header[token_key] = get_token(device_type)
     else:
-        header['X-TOKEN'] = token
+        header[token_key] = token_value
+
     logger.info(f'Headers: {header}')
     request = requests.get(url=API_MOVIES_URL, headers=header)
     movies_list = []
