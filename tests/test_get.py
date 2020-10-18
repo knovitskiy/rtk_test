@@ -25,6 +25,7 @@ def test_film_ended(device_type):
     assert Films.ENDED['name'] not in movies_list
 
 
-def test_invalid_token():
-    response = get_movies(TV_DEVICE, token='123')
+@pytest.mark.parametrize('token', ['123', ''])
+def test_invalid_token(token):
+    response = get_movies(TV_DEVICE, token=token)
     assert 'Токен не найден' in response['message']
