@@ -17,15 +17,22 @@ def get_token(device_type):
     return token
 
 
-def get_movies(device_type: str):
+def get_movies(device_type: str, token=None):
     header = HEADER_TOKEN.copy()
-    header['X-TOKEN'] = get_token(device_type)
+    if token is None:
+        header['X-TOKEN'] = get_token(device_type)
+    else:
+        header['X-TOKEN'] = token
     logger.info(f'Headers: {header}')
     request = requests.get(url=API_MOVIES_URL, headers=header)
-    movies_json = request.json()['items']
     movies_list = []
-    for movie_item in movies_json:
-        movies_list.append(movie_item['name'])
+    try:
+        movies_json = request.json()['items']
+        for movie_item in movies_json:
+            movies_list.append(movie_item['name'])
+    except KeyError:
+        logger.info(f'invalid response: {request.text}')
+        movies_list = request.json()
     logger.info(f'Movies list for {device_type}: {movies_list}')
     return movies_list
 

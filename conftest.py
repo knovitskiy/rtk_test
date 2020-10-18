@@ -5,7 +5,7 @@ import time
 from constants import WAITING_DATA_CREATED
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def data_for_tests():
 
     # creating services
