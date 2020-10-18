@@ -22,9 +22,12 @@ def get_movies(device_type: str):
     header['X-TOKEN'] = get_token(device_type)
     logger.info(f'Headers: {header}')
     request = requests.get(url=API_MOVIES_URL, headers=header)
-    movies = request.json()
-    logger.info(f'Movies list for {device_type}: {movies}')
-    return movies
+    movies_json = request.json()['items']
+    movies_list = []
+    for movie_item in movies_json:
+        movies_list.append(movie_item['name'])
+    logger.info(f'Movies list for {device_type}: {movies_list}')
+    return movies_list
 
 
 def create_service(service: dict):
